@@ -1,0 +1,89 @@
+﻿<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>X Mobile - Админ-панель</title>
+  <meta name="description" content="Админ-панель X Mobile: управление текстами сайта, FAQ и товарами.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar__inner">
+      <a class="logo" href="./index.html"><img class="logo__img" src="./assets/logo-xmobile.svg" alt="X Mobile"></a>
+      <nav class="nav">
+        <a href="./index.html">Главная</a>
+        <a href="./shop.html">Магазин</a>
+        <a href="./admin.html" class="is-active">Админ-панель</a>
+      </nav>
+      <button class="btn btn--dark" id="logoutBtn" type="button">Выйти</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="section admin-shell reveal">
+      <div class="admin-head">
+        <div>
+          <h1>Админ-панель</h1>
+          <p id="adminStatus">Загрузка данных...</p>
+        </div>
+      </div>
+
+      <p class="admin-feedback" id="adminFeedback">Панель готова к работе.</p>
+
+      <div class="admin-stack">
+        <article class="admin-card">
+          <h2>Тексты сайта</h2>
+          <p>Изменения применяются на главной, в магазине и в футере после сохранения.</p>
+          <form id="contentForm" class="admin-form">
+            <div class="admin-fields" id="contentFields"></div>
+            <button class="btn btn--orange" type="submit">Сохранить тексты</button>
+          </form>
+        </article>
+
+        <article class="admin-card">
+          <h2>FAQ</h2>
+          <form id="faqAddForm" class="admin-inline-form">
+            <input id="faqQuestion" type="text" placeholder="Новый вопрос" required>
+            <input id="faqAnswer" type="text" placeholder="Новый ответ" required>
+            <button class="btn btn--dark" type="submit">Добавить вопрос</button>
+          </form>
+          <div class="admin-list" id="faqAdminList"></div>
+        </article>
+
+        <article class="admin-card">
+          <h2>Товары магазина</h2>
+          <form id="productAddForm" class="admin-product-form">
+            <input id="addProductName" type="text" placeholder="Название товара" required>
+            <input id="addProductLabel" type="text" placeholder="Подкатегория (например, Дисплеи iPhone)" required>
+            <select id="addProductCategory" required></select>
+            <input id="addProductPrice" type="number" min="0" step="1" placeholder="Цена" required>
+            <input id="addProductStock" type="number" min="0" step="1" placeholder="Остаток" required>
+            <button class="btn btn--dark" type="submit">Добавить товар</button>
+          </form>
+          <div class="admin-list admin-list--products" id="productAdminList"></div>
+        </article>
+
+        <article class="admin-card admin-card--tools">
+          <h2>Система</h2>
+          <p>Резервные операции и быстрый сброс базы для восстановления.</p>
+          <div class="admin-tools">
+            <button class="btn btn--light" id="resetDataButton" type="button">Сбросить базу к умолчанию</button>
+            <button class="btn btn--dark" id="exportDataButton" type="button">Экспорт JSON</button>
+            <label class="btn btn--light admin-upload-btn">
+              Импорт JSON
+              <input id="importDataInput" type="file" accept="application/json,.json" hidden>
+            </label>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <script src="./script.js"></script>
+  <script src="./admin.js"></script>
+</body>
+</html>
