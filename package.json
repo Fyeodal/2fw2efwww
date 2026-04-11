@@ -1,0 +1,9 @@
+{
+  "name": "xmobile-site",
+  "private": true,
+  "version": "1.0.0",
+  "description": "X Mobile website with admin panel and server-side applications database",
+  "scripts": {
+    "start": "node server.js"
+  }
+}

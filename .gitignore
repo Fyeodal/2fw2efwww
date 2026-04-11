@@ -1,0 +1,4 @@
+server-data/applications.json
+server-data/database.json
+server-data/uploads/
+.env

@@ -1,0 +1,499 @@
+﻿<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>X Mobile - Магазин запчастей</title>
+  <meta name="description" content="Магазин X Mobile: запчасти и аксессуары для техники Apple. Категории iPhone, JCID, кабели и зарядные устройства.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar__inner">
+      <a class="logo" href="./index.html"><img class="logo__img" src="./assets/logo-xmobile.svg" alt="X Mobile"></a>
+      <nav class="nav">
+        <a href="./index.html#devices">Техника</a>
+        <a href="./index.html#services">Услуги</a>
+        <a href="./index.html#calculator">Стоимость</a>
+        <a href="./index.html#faq">FAQ</a>
+        <a href="./shop.html" class="is-active">Магазин</a>
+        <a href="./account.html">Кабинет</a>
+        <a href="./index.html#contacts">Контакты</a>
+      </nav>
+      <div class="topbar__actions">
+        <a class="btn btn--request" href="./index.html#calculator">Заявка на ремонт</a>
+        <a class="btn btn--cabinet" href="./account.html">Личный кабинет</a>
+      </div>
+      <button class="nav-burger" id="navBurger" aria-label="Открыть меню" aria-expanded="false">
+        <span class="nav-burger__line"></span>
+        <span class="nav-burger__line"></span>
+        <span class="nav-burger__line"></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="section shop-hero reveal">
+      <h1 class="shop-hero__title">Магазин запчастей и аксессуаров</h1>
+      <p class="shop-hero__text">
+        Отдельная вкладка магазина с удобным поиском и фильтрами. Основа структуры повторяет текущий
+        каталог `xm64.ru`: iPhone, JCID, кабели, зарядные устройства и смежные разделы.
+      </p>
+      <div class="shop-controls">
+        <input class="shop-input" id="shopSearch" type="text" placeholder="Поиск по названию товара">
+        <select class="shop-select" id="stockFilter">
+          <option value="all">Наличие: все</option>
+          <option value="in">Только в наличии</option>
+          <option value="low">Мало на складе</option>
+          <option value="out">Нет в наличии</option>
+        </select>
+        <select class="shop-select" id="sortSelect">
+          <option value="default">Сортировка: по умолчанию</option>
+          <option value="price-asc">Цена: по возрастанию</option>
+          <option value="price-desc">Цена: по убыванию</option>
+          <option value="name">Название: А-Я</option>
+        </select>
+      </div>
+    </section>
+
+    <section class="section reveal">
+      <div class="shop-layout">
+        <aside class="shop-sidebar">
+          <div class="category-panel">
+            <h3>Категории магазина</h3>
+
+            <div class="category-group">
+              <h4>Фильтр по категориям</h4>
+              <ul id="dynamicCategoryList">
+                <li><button class="category-filter" type="button" data-filter="all">Все категории</button></li>
+              </ul>
+            </div>
+
+            <div class="category-group">
+              <h4>Запчасти магазин</h4>
+              <ul>
+                <li><button class="category-filter" type="button" data-filter="iphone">iPhone</button></li>
+                <li><button class="category-filter" type="button" data-filter="jcid">JCID</button></li>
+                <li><button class="category-filter" type="button" data-filter="cable">Зарядные устройства и кабеля</button></li>
+              </ul>
+            </div>
+
+            <div class="category-group">
+              <h4>iPhone</h4>
+              <ul>
+                <li><button class="category-filter" type="button" data-filter="display">Дисплеи iPhone X / XS</button></li>
+                <li><button class="category-filter" type="button" data-filter="display">Дисплеи iPhone 12 / 12 Pro</button></li>
+                <li><button class="category-filter" type="button" data-filter="display">Дисплеи iPhone 13 mini</button></li>
+                <li><button class="category-filter" type="button" data-filter="display">Дисплеи iPhone 14 / 14 Pro Max</button></li>
+                <li><button class="category-filter" type="button" data-filter="display">Дисплеи iPhone 15 / 15 Pro Max</button></li>
+                <li><button class="category-filter" type="button" data-filter="flex">Шлейфы</button></li>
+                <li><button class="category-filter" type="button" data-filter="flex">Нижний шлейф (29 товаров)</button></li>
+                <li>АКБ</li>
+                <li>Камеры</li>
+                <li>Для переклейки / проклейки</li>
+              </ul>
+            </div>
+
+            <div class="category-group">
+              <h4>JCID</h4>
+              <ul>
+                <li><button class="category-filter" type="button" data-filter="jcid">Шлейфы для восстановления Face ID</button></li>
+                <li>Аксессуары и сервисные компоненты</li>
+              </ul>
+            </div>
+
+            <div class="category-group">
+              <h4>Зарядные устройства и кабеля</h4>
+              <ul>
+                <li><button class="category-filter" type="button" data-filter="cable">Кабеля</button></li>
+                <li>Переходники</li>
+                <li>СЗУ</li>
+              </ul>
+            </div>
+
+            <div class="category-group">
+              <h4>Системные разделы</h4>
+              <ul>
+                <li>/shop</li>
+                <li>/cart</li>
+                <li>/checkout</li>
+                <li>/my-account</li>
+                <li>/my-account/orders</li>
+              </ul>
+            </div>
+
+            <div class="filter-chips">
+              <button class="chip is-active" type="button" data-filter="all">Все</button>
+              <button class="chip" type="button" data-filter="display">Дисплеи</button>
+              <button class="chip" type="button" data-filter="flex">Шлейфы</button>
+              <button class="chip" type="button" data-filter="jcid">JCID</button>
+              <button class="chip" type="button" data-filter="cable">Кабели</button>
+            </div>
+          </div>
+        </aside>
+
+        <div class="products-panel">
+          <div class="products-top">
+            <h2>Товары</h2>
+            <p class="products-count" id="productsCount">Найдено: 0</p>
+          </div>
+          <div class="cart-panel" id="cartPanel">
+            <div class="cart-panel__head">
+              <h3>Корзина</h3>
+              <p id="cartBadge">0 товаров</p>
+            </div>
+            <div class="cart-items" id="cartItems"></div>
+            <p class="cart-empty" id="cartEmpty">Корзина пока пустая.</p>
+            <div class="cart-summary">
+              <span>Итого</span>
+              <strong id="cartTotal">0 ₽</strong>
+            </div>
+            <button class="btn btn--orange cart-buy-btn" id="buyButton" type="button">Купить</button>
+            <form class="checkout-form is-hidden" id="checkoutForm">
+              <h4>Оформление заказа</h4>
+              <div class="checkout-grid">
+                <label>
+                  ФИО
+                  <input id="checkoutName" type="text" placeholder="Иванов Иван Иванович" required>
+                </label>
+                <label>
+                  Телефон
+                  <input id="checkoutPhone" type="tel" placeholder="+7 (...) ...-..-.." required>
+                </label>
+                <label>
+                  Telegram
+                  <input id="checkoutTelegram" type="text" placeholder="@username">
+                </label>
+                <label>
+                  Почта
+                  <input id="checkoutEmail" type="email" placeholder="you@email.com" required>
+                </label>
+                <label>
+                  Удобный филиал
+                  <select id="checkoutBranch" required>
+                    <option value="Саратов, Б. Казачья, 35">Саратов, Б. Казачья, 35</option>
+                    <option value="Саратов, Московская, 100">Саратов, Московская, 100</option>
+                    <option value="Энгельс, Тельмана, 6">Энгельс, Тельмана, 6</option>
+                  </select>
+                </label>
+                <label>
+                  Доставка
+                  <select id="checkoutDeliveryMode">
+                    <option value="local">Самовывоз / по городу</option>
+                    <option value="other_city">Доставка в другой город</option>
+                  </select>
+                </label>
+                <label id="checkoutDeliveryCityWrap" class="is-hidden">
+                  Город доставки
+                  <input id="checkoutDeliveryCity" type="text" placeholder="Например: Москва">
+                </label>
+                <label>
+                  Комментарий
+                  <textarea id="checkoutComment" rows="3" placeholder="Уточнение по заказу или заявке"></textarea>
+                </label>
+              </div>
+              <button class="btn btn--dark" type="submit">Отправить заказ</button>
+              <p class="checkout-note" id="checkoutNote">После отправки мы свяжемся для подтверждения.</p>
+            </form>
+          </div>
+
+          <div class="products-grid" id="productsGrid">
+            <article class="product-card" data-product data-category="display" data-stock="in" data-price="2050" data-name="Дисплей iPhone X копия HARD OLED GX">
+              <p class="product-cat">Дисплеи iPhone</p>
+              <div class="product-top">
+                <h3 class="product-name">Дисплей iPhone X копия HARD OLED GX</h3>
+              </div>
+              <p class="product-price">2 050 ₽</p>
+              <p class="stock">В наличии</p>
+              <div class="product-actions">
+                <button class="mini-btn mini-btn--dark add-cart-btn" type="button">В корзину</button>
+              </div>
+            </article>
+
+            <article class="product-card" data-product data-category="display" data-stock="in" data-price="2050" data-name="Дисплей iPhone XS копия HARD OLED GX">
+              <p class="product-cat">Дисплеи iPhone</p>
+              <div class="product-top">
+                <h3 class="product-name">Дисплей iPhone XS копия HARD OLED GX</h3>
+              </div>
+              <p class="product-price">2 050 ₽</p>
+              <p class="stock">В наличии</p>
+              <div class="product-actions">
+                <button class="mini-btn mini-btn--dark add-cart-btn" type="button">В корзину</button>
+              </div>
+            </article>
+
+            <article class="product-card" data-product data-category="display" data-stock="out" data-price="2950" data-name="Дисплей iPhone 15 Pro Max копия INCELL RJ">
+              <p class="product-cat">Дисплеи iPhone 15 Pro Max</p>
+              <div class="product-top">
+                <h3 class="product-name">Дисплей iPhone 15 Pro Max копия INCELL RJ</h3>
+              </div>
+              <p class="product-price">2 950 ₽</p>
+              <p class="stock stock--out">Нет в наличии</p>
+              <div class="product-actions">
+                <button class="mini-btn mini-btn--request add-cart-btn" type="button">Запросить</button>
+              </div>
+            </article>
+
+            <article class="product-card" data-product data-category="display" data-stock="out" data-price="11000" data-name="Дисплей iPhone 14 Pro Max копия SOFT OLED DD">
+              <p class="product-cat">Дисплеи iPhone 14 Pro Max</p>
+              <div class="product-top">
+                <h3 class="product-name">Дисплей iPhone 14 Pro Max копия SOFT OLED DD</h3>
+              </div>
+              <p class="product-price">11 000 ₽</p>
+              <p class="stock stock--out">Нет в наличии</p>
+              <div class="product-actions">
+                <button class="mini-btn mini-btn--request add-cart-btn" type="button">Запросить</button>
+              </div>
+            </article>
+
+            <article class="product-card" data-product data-category="display" data-stock="out" data-price="5150" data-name="Дисплей iPhone 13 mini копия HARD OLED DD">
+              <p class="product-cat">Дисплеи iPhone 13 mini</p>
+              <div class="product-top">
+                <h3 class="product-name">Дисплей iPhone 13 mini копия HARD OLED DD</h3>
+              </div>
+              <p class="product-price">5 150 ₽</p>
+              <p class="stock stock--out">Нет в наличии</p>
+              <div class="product-actions">
+                <button class="mini-btn mini-btn--request add-cart-btn" type="button">Запросить</button>
+              </div>
+            </article>
+
+            <article class="product-card" data-product data-category="display" data-stock="out" data-price="3100" data-name="Дисплей iPhone 12 / 12 Pro копия HARD OLED GX">
+              <p class="product-cat">Дисплеи iPhone 12 / 12 Pro</p>
+              <div class="product-top">
+                <h3 class="product-name">Дисплей iPhone 12 / 12 Pro копия HARD OLED GX</h3>
+              </div>
+              <p class="product-price">3 100 ₽</p>
+              <p class="stock stock--out">Нет в наличии</p>
+              <div class="product-actions">
+                <button class="mini-btn mini-btn--request add-cart-btn" type="button">Запросить</button>
+              </div>
+            </article>
+
+            <article class="product-card" data-product data-category="display" data-stock="low" data-price="2650" data-name="Дисплей iPhone 15 копия INCELL RJ">
+              <p class="product-cat">Дисплеи iPhone 15</p>
+              <div class="product-top">
+                <h3 class="product-name">Дисплей iPhone 15 копия INCELL RJ</h3>
+              </div>
+              <p class="product-price">2 650 ₽</p>
+              <p class="stock stock--low">1 в наличии</p>
+              <div class="product-actions">
+                <button class="mini-btn mini-btn--dark add-cart-btn" type="button">В корзину</button>
+              </div>
+            </article>
+
+            <article class="product-card" data-product data-category="display" data-stock="low" data-price="6250" data-name="Дисплей iPhone 14 оригинал снятый с разбора царапины">
+              <p class="product-cat">Дисплеи iPhone 14</p>
+              <div class="product-top">
+                <h3 class="product-name">Дисплей iPhone 14 оригинал снятый с разбора (царапины)</h3>
+              </div>
+              <p class="product-price">6 250 ₽</p>
+              <p class="stock stock--low">2 в наличии</p>
+              <div class="product-actions">
+                <button class="mini-btn mini-btn--dark add-cart-btn" type="button">В корзину</button>
+              </div>
+            </article>
+
+            <article class="product-card" data-product data-category="jcid" data-stock="low" data-price="2800" data-name="Шлейф JCID iPhone 16 Pro Max для восстановления Face ID">
+              <p class="product-cat">JCID / Face ID</p>
+              <div class="product-top">
+                <h3 class="product-name">Шлейф JCID iPhone 16 Pro Max для восстановления Face ID</h3>
+              </div>
+              <p class="product-price">2 800 ₽</p>
+              <p class="stock stock--low">1 в наличии</p>
+              <div class="product-actions">
+                <button class="mini-btn mini-btn--dark add-cart-btn" type="button">В корзину</button>
+              </div>
+            </article>
+
+            <article class="product-card" data-product data-category="jcid" data-stock="low" data-price="2800" data-name="Шлейф JCID iPhone 16 Pro для восстановления Face ID">
+              <p class="product-cat">JCID / Face ID</p>
+              <div class="product-top">
+                <h3 class="product-name">Шлейф JCID iPhone 16 Pro для восстановления Face ID</h3>
+              </div>
+              <p class="product-price">2 800 ₽</p>
+              <p class="stock stock--low">1 в наличии</p>
+              <div class="product-actions">
+                <button class="mini-btn mini-btn--dark add-cart-btn" type="button">В корзину</button>
+              </div>
+            </article>
+
+            <article class="product-card" data-product data-category="flex" data-stock="in" data-price="2000" data-name="Шлейф iPhone 15 с разъемом зарядки оригинал с разбора">
+              <p class="product-cat">Нижний шлейф</p>
+              <div class="product-top">
+                <h3 class="product-name">Шлейф iPhone 15 с разъемом зарядки оригинал с разбора</h3>
+              </div>
+              <p class="product-price">2 000 ₽</p>
+              <p class="stock">В наличии</p>
+              <div class="product-actions">
+                <button class="mini-btn mini-btn--dark add-cart-btn" type="button">В корзину</button>
+              </div>
+            </article>
+
+            <article class="product-card" data-product data-category="flex" data-stock="in" data-price="2200" data-name="Шлейф iPhone 15 Pro с разъемом зарядки с разбора">
+              <p class="product-cat">Нижний шлейф</p>
+              <div class="product-top">
+                <h3 class="product-name">Шлейф iPhone 15 Pro с разъемом зарядки с разбора</h3>
+              </div>
+              <p class="product-price">2 200 ₽</p>
+              <p class="stock">В наличии</p>
+              <div class="product-actions">
+                <button class="mini-btn mini-btn--dark add-cart-btn" type="button">В корзину</button>
+              </div>
+            </article>
+
+            <article class="product-card" data-product data-category="flex" data-stock="in" data-price="3500" data-name="Шлейф iPhone 16 Pro Max с разъемом зарядки с разбора">
+              <p class="product-cat">Нижний шлейф</p>
+              <div class="product-top">
+                <h3 class="product-name">Шлейф iPhone 16 Pro Max с разъемом зарядки с разбора</h3>
+              </div>
+              <p class="product-price">3 500 ₽</p>
+              <p class="stock">В наличии</p>
+              <div class="product-actions">
+                <button class="mini-btn mini-btn--dark add-cart-btn" type="button">В корзину</button>
+              </div>
+            </article>
+
+            <article class="product-card" data-product data-category="flex" data-stock="in" data-price="2400" data-name="Шлейф iPhone 16 с разъемом зарядки с разбора">
+              <p class="product-cat">Нижний шлейф</p>
+              <div class="product-top">
+                <h3 class="product-name">Шлейф iPhone 16 с разъемом зарядки с разбора</h3>
+              </div>
+              <p class="product-price">2 400 ₽</p>
+              <p class="stock">В наличии</p>
+              <div class="product-actions">
+                <button class="mini-btn mini-btn--dark add-cart-btn" type="button">В корзину</button>
+              </div>
+            </article>
+
+            <article class="product-card" data-product data-category="flex" data-stock="in" data-price="3100" data-name="Шлейф iPhone 16 Pro с разъемом зарядки с разбора">
+              <p class="product-cat">Нижний шлейф</p>
+              <div class="product-top">
+                <h3 class="product-name">Шлейф iPhone 16 Pro с разъемом зарядки с разбора</h3>
+              </div>
+              <p class="product-price">3 100 ₽</p>
+              <p class="stock">В наличии</p>
+              <div class="product-actions">
+                <button class="mini-btn mini-btn--dark add-cart-btn" type="button">В корзину</button>
+              </div>
+            </article>
+
+            <article class="product-card" data-product data-category="flex" data-stock="in" data-price="364" data-name="Шлейф iPhone 7 plus с разъемом зарядки оригинал">
+              <p class="product-cat">Нижний шлейф</p>
+              <div class="product-top">
+                <h3 class="product-name">Шлейф iPhone 7 plus с разъемом зарядки оригинал</h3>
+              </div>
+              <p class="product-price">364 ₽</p>
+              <p class="stock">В наличии</p>
+              <div class="product-actions">
+                <button class="mini-btn mini-btn--dark add-cart-btn" type="button">В корзину</button>
+              </div>
+            </article>
+
+            <article class="product-card" data-product data-category="flex" data-stock="in" data-price="550" data-name="Шлейф iPhone SE 2020 с разъемом зарядки оригинал">
+              <p class="product-cat">Нижний шлейф</p>
+              <div class="product-top">
+                <h3 class="product-name">Шлейф iPhone SE 2020 с разъемом зарядки оригинал</h3>
+              </div>
+              <p class="product-price">550 ₽</p>
+              <p class="stock">В наличии</p>
+              <div class="product-actions">
+                <button class="mini-btn mini-btn--dark add-cart-btn" type="button">В корзину</button>
+              </div>
+            </article>
+
+            <article class="product-card" data-product data-category="flex" data-stock="in" data-price="650" data-name="Шлейф iPhone 13 Pro/13 Pro Max антенна NFC + Bluetooth + микрофон с разбора">
+              <p class="product-cat">Шлейфы iPhone</p>
+              <div class="product-top">
+                <h3 class="product-name">Шлейф iPhone 13 Pro/13 Pro Max антенна NFC + Bluetooth + микрофон</h3>
+              </div>
+              <p class="product-price">650 ₽</p>
+              <p class="stock">В наличии</p>
+              <div class="product-actions">
+                <button class="mini-btn mini-btn--dark add-cart-btn" type="button">В корзину</button>
+              </div>
+            </article>
+
+            <article class="product-card" data-product data-category="cable" data-stock="in" data-price="1000" data-name="Кабель Apple USB-C 60W 1м Оригинал A2795">
+              <p class="product-cat">Кабели / Apple</p>
+              <div class="product-top">
+                <h3 class="product-name">Кабель Apple USB-C (60W / 1м), Оригинал в упаковке (A2795)</h3>
+              </div>
+              <p class="product-price">1 000 ₽</p>
+              <p class="stock">10 в наличии</p>
+              <div class="product-actions">
+                <button class="mini-btn mini-btn--dark add-cart-btn" type="button">В корзину</button>
+              </div>
+            </article>
+
+            <article class="product-card" data-product data-category="cable" data-stock="in" data-price="400" data-name="Кабель USB Type-C 6.5A Realme SuperDart Charge">
+              <p class="product-cat">Кабели / Type-C</p>
+              <div class="product-top">
+                <h3 class="product-name">Кабель USB Type-C 6.5A Realme (SuperDart Charge), Оригинал</h3>
+              </div>
+              <p class="product-price">400 ₽</p>
+              <p class="stock">6 в наличии</p>
+              <div class="product-actions">
+                <button class="mini-btn mini-btn--dark add-cart-btn" type="button">В корзину</button>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer-site">
+    <div class="footer-site__inner">
+      <div class="footer-col footer-col--brand">
+        <a class="footer-logo" href="./index.html">
+          <img src="./assets/logo-xmobile.svg" alt="X Mobile">
+        </a>
+        <p>Ремонт телефонов и продажа запчастей для Apple</p>
+        <p>ИНН 6452912974785<br>ОГРНИП 32164510003354</p>
+        <p>Российская Федерация, г. Саратов, ул. Большая Казачья, 35</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Контакты</h4>
+        <a href="tel:+79272264321">+7 (927) 226-4321</a>
+        <a href="https://t.me/xm64ru" target="_blank" rel="noreferrer">Telegram: @xm64ru</a>
+        <a href="mailto:info@xm64.ru">Email: info@xm64.ru</a>
+      </div>
+
+      <div class="footer-col">
+        <h4>Разделы сайта</h4>
+        <a href="./index.html">Главная</a>
+        <a href="./shop.html">Магазин</a>
+        <a href="./account.html">Личный кабинет</a>
+        <a href="./index.html#services">Услуги</a>
+        <a href="./index.html#contacts">Контакты</a>
+      </div>
+
+      <div class="footer-col">
+        <h4>Информация</h4>
+        <a href="./about.html">О нас</a>
+        <a href="./return.html">Возврат товара</a>
+        <a href="./privacy.html">Политика конфиденциальности</a>
+        <a href="./admin-login.html">Вход для администратора</a>
+      </div>
+    </div>
+
+    <div class="footer-site__bottom">
+      <p>© 2026 Икс Мобайл - Ремонт и Запчасти для Apple в Саратове</p>
+      <div class="footer-partners">
+        <span>Поисковые партнёры</span>
+        <strong>POISKZIP</strong>
+        <strong>POISK123.RU</strong>
+      </div>
+    </div>
+  </footer>
+
+  <script src="./script.js"></script>
+</body>
+</html>
+
+

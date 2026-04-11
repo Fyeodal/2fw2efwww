@@ -1,0 +1,66 @@
+﻿<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>X Mobile - Вход в админ-панель</title>
+  <meta name="description" content="Вход в админ-панель X Mobile для управления контентом, FAQ и товарами.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar__inner">
+      <a class="logo" href="./index.html"><img class="logo__img" src="./assets/logo-xmobile.svg" alt="X Mobile"></a>
+      <nav class="nav">
+        <a href="./index.html">Главная</a>
+        <a href="./shop.html">Магазин</a>
+        <a href="./admin-login.html" class="is-active">Админ вход</a>
+      </nav>
+      <div class="topbar__actions">
+        <a class="btn btn--request" href="./index.html#calculator">Оставить заявку</a>
+        <a class="btn btn--cabinet" href="./account.html">Личный кабинет</a>
+      </div>
+      <button class="nav-burger" id="navBurger" aria-label="Открыть меню" aria-expanded="false">
+        <span class="nav-burger__line"></span>
+        <span class="nav-burger__line"></span>
+        <span class="nav-burger__line"></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section class="section admin-login-wrap reveal">
+      <article class="admin-login-card">
+        <h1>Вход в админ-панель</h1>
+        <p>Доступ только для администратора. Здесь можно редактировать тексты сайта, FAQ и каталог товаров.</p>
+
+        <form id="adminLoginForm" class="admin-login-form" autocomplete="off">
+          <label>
+            Логин
+            <input id="adminLogin" type="text" placeholder="Введите логин" required>
+          </label>
+          <label>
+            Пароль
+            <div class="field-pw-wrap">
+              <input id="adminPassword" type="password" placeholder="Введите пароль" required>
+              <button type="button" class="field-eye-btn" data-target="adminPassword" aria-label="Показать пароль">
+                <svg class="eye-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                <svg class="eye-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/><path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+              </button>
+            </div>
+          </label>
+          <button class="btn btn--orange" type="submit">Войти</button>
+        </form>
+
+        <p class="admin-note" id="adminLoginNote">Авторизация требуется для доступа к `/admin.html`.</p>
+      </article>
+    </section>
+  </main>
+
+  <script src="./script.js"></script>
+  <script src="./admin.js"></script>
+</body>
+</html>

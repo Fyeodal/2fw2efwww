@@ -1,0 +1,456 @@
+﻿<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>X Mobile - Админ-панель</title>
+  <meta name="description" content="Админ-панель X Mobile: управление текстами сайта, FAQ и товарами.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar__inner">
+      <a class="logo" href="./index.html"><img class="logo__img" src="./assets/logo-xmobile.svg" alt="X Mobile"></a>
+      <nav class="nav">
+        <a href="./index.html">Главная</a>
+        <a href="./shop.html">Магазин</a>
+        <a href="./admin.html" class="is-active">Админ-панель</a>
+      </nav>
+      <div class="topbar__actions">
+        <a class="btn btn--cabinet" href="./account.html">Личный кабинет</a>
+        <button class="btn btn--dark" id="logoutBtn" type="button">Выйти</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section admin-shell reveal">
+      <div class="admin-head">
+        <div>
+          <h1>Админ-панель</h1>
+          <p id="adminStatus">Загрузка данных...</p>
+        </div>
+      </div>
+
+      <p class="admin-feedback" id="adminFeedback">Панель готова к работе.</p>
+
+      <div class="admin-workspace">
+        <aside class="admin-sidebar" id="adminTabs" aria-label="Разделы админ-панели">
+          <button class="admin-tab is-active" type="button" data-tab-target="requests">
+            <span class="admin-tab__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M4 5h16v5H4zM4 14h16v5H4z"></path></svg>
+            </span>
+            <span class="admin-tab__label">Заявки</span>
+          </button>
+          <button class="admin-tab" type="button" data-tab-target="catalog">
+            <span class="admin-tab__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"></path></svg>
+            </span>
+            <span class="admin-tab__label">Магазин и цены</span>
+          </button>
+          <button class="admin-tab" type="button" data-tab-target="texts">
+            <span class="admin-tab__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M5 6h14M5 12h14M5 18h9"></path></svg>
+            </span>
+            <span class="admin-tab__label">Тексты</span>
+          </button>
+          <button class="admin-tab" type="button" data-tab-target="faq">
+            <span class="admin-tab__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M9.5 9a2.5 2.5 0 1 1 4.3 1.7c-.8.8-1.8 1.2-1.8 2.3M12 17h.01"></path></svg>
+            </span>
+            <span class="admin-tab__label">FAQ</span>
+          </button>
+          <button class="admin-tab" type="button" data-tab-target="users">
+            <span class="admin-tab__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M8 11a3 3 0 1 1 0-6a3 3 0 0 1 0 6zm8 1a3 3 0 1 0-3-3a3 3 0 0 0 3 3zM4 19a4 4 0 0 1 8 0M12 19a4 4 0 0 1 8 0"></path></svg>
+            </span>
+            <span class="admin-tab__label">Пользователи</span>
+          </button>
+          <button class="admin-tab" type="button" data-tab-target="orders">
+            <span class="admin-tab__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M4 7h16v10H4zM8 11h8M8 15h5"></path></svg>
+            </span>
+            <span class="admin-tab__label">Заказы</span>
+          </button>
+          <button class="admin-tab" type="button" data-tab-target="returns">
+            <span class="admin-tab__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M7 8h10v12H7zM10 4h4M5 8h14M9 12h6"></path></svg>
+            </span>
+            <span class="admin-tab__label">Возвраты</span>
+          </button>
+          <button class="admin-tab" type="button" data-tab-target="system">
+            <span class="admin-tab__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M12 8a4 4 0 1 0 0 8a4 4 0 0 0 0-8zm0-5v3m0 12v3m9-9h-3M6 12H3m14.4 6.4-2.1-2.1M8.7 8.7 6.6 6.6m10.8 0-2.1 2.1m-6.6 6.6-2.1 2.1"></path></svg>
+            </span>
+            <span class="admin-tab__label">Система</span>
+          </button>
+        </aside>
+
+        <div class="admin-content">
+          <div class="admin-stack">
+        <article class="admin-card" data-tab-panel="requests">
+          <h2>Заявки клиентов</h2>
+          <p>Все отправленные заявки с сайта. Статусы, история изменений и данные клиента сохраняются в серверной базе.</p>
+          <div class="admin-requests-head">
+            <p id="requestStats">Загрузка заявок...</p>
+            <button class="btn btn--light" id="refreshRequestsBtn" type="button">Обновить заявки</button>
+          </div>
+          <div class="request-filters">
+            <label>
+              Статус
+              <select id="requestStatusFilter">
+                <option value="all">Все</option>
+                <option value="new">Новая</option>
+                <option value="in_progress">В работе</option>
+                <option value="postponed">Отложена</option>
+                <option value="done">Обработана</option>
+                <option value="rejected">Отклонена</option>
+              </select>
+            </label>
+            <label>
+              Телефон
+              <input id="requestPhoneFilter" type="text" placeholder="+7 или часть номера">
+            </label>
+            <label>
+              Дата с
+              <input id="requestDateFromFilter" type="date">
+            </label>
+            <label>
+              Дата по
+              <input id="requestDateToFilter" type="date">
+            </label>
+            <button class="mini-btn" id="resetRequestFiltersBtn" type="button">Сбросить фильтры</button>
+          </div>
+          <div class="admin-list admin-requests-list" id="requestAdminList"></div>
+        </article>
+
+        <article class="admin-card" data-tab-panel="texts" hidden>
+          <h2>Тексты сайта</h2>
+          <p>Изменения применяются на главной, в магазине и в футере после сохранения.</p>
+          <form id="contentForm" class="admin-form">
+            <div class="admin-fields" id="contentFields"></div>
+            <button class="btn btn--orange" type="submit">Сохранить тексты</button>
+          </form>
+        </article>
+
+        <article class="admin-card" data-tab-panel="faq" hidden>
+          <h2>FAQ</h2>
+          <form id="faqAddForm" class="admin-inline-form">
+            <input id="faqQuestion" type="text" placeholder="Новый вопрос" required>
+            <input id="faqAnswer" type="text" placeholder="Новый ответ" required>
+            <button class="btn btn--dark" type="submit">Добавить вопрос</button>
+          </form>
+          <div class="admin-list" id="faqAdminList"></div>
+        </article>
+
+        <article class="admin-card" data-tab-panel="catalog" hidden>
+          <h2>Товары магазина</h2>
+          <form id="productAddForm" class="admin-product-form">
+            <input id="addProductName" type="text" placeholder="Название товара" required>
+            <select id="addProductLabel" required></select>
+            <select id="addProductCategory" required></select>
+            <input id="addProductPrice" type="number" min="0" step="1" placeholder="Цена" required>
+            <input id="addProductStock" type="number" min="0" step="1" placeholder="Остаток" required>
+            <button class="btn btn--dark" type="submit">Добавить товар</button>
+          </form>
+          <div class="admin-list admin-list--products" id="productAdminList"></div>
+        </article>
+
+        <article class="admin-card" data-tab-panel="catalog" hidden>
+          <h2>Категории магазина</h2>
+          <p>Добавляйте новые категории для фильтра и карточек товара.</p>
+          <form id="categoryAddForm" class="admin-inline-form admin-inline-form--category">
+            <input id="addCategoryLabel" type="text" placeholder="Название категории (например, Камеры)" required>
+            <input id="addCategoryValue" type="text" placeholder="Ключ (например, camera). Можно пусто">
+            <button class="btn btn--dark" type="submit">Добавить категорию</button>
+          </form>
+          <div class="admin-list" id="categoryAdminList"></div>
+        </article>
+
+        <article class="admin-card" data-tab-panel="catalog" hidden>
+          <h2>Калькулятор: цены и модели</h2>
+          <p>Здесь управляются примерочные расчёты: устройства, модели, услуги и срочность.</p>
+
+          <div class="admin-calc-grid">
+            <section class="admin-calc-block">
+              <h3>Устройства</h3>
+              <form id="deviceAddForm" class="admin-inline-form admin-inline-form--calc">
+                <input id="addDeviceLabel" type="text" placeholder="Название устройства" required>
+                <input id="addDeviceBasePrice" type="number" min="0" step="1" placeholder="Базовая цена, ₽" required>
+                <button class="btn btn--dark" type="submit">Добавить устройство</button>
+              </form>
+              <div class="admin-list" id="deviceAdminList"></div>
+            </section>
+
+            <section class="admin-calc-block">
+              <h3>Модели</h3>
+              <form id="modelAddForm" class="admin-inline-form admin-inline-form--calc">
+                <select id="addModelDeviceId" required></select>
+                <input id="addModelLabel" type="text" placeholder="Название модели" required>
+                <input id="addModelPriceDelta" type="number" min="0" step="1" placeholder="Доплата, ₽" required>
+                <button class="btn btn--dark" type="submit">Добавить модель</button>
+              </form>
+              <div class="admin-list" id="modelAdminList"></div>
+            </section>
+
+            <section class="admin-calc-block">
+              <h3>Услуги</h3>
+              <form id="serviceAddForm" class="admin-inline-form admin-inline-form--calc">
+                <input id="addServiceLabel" type="text" placeholder="Название услуги" required>
+                <input id="addServiceBasePrice" type="number" min="0" step="1" placeholder="Цена услуги, ₽" required>
+                <button class="btn btn--dark" type="submit">Добавить услугу</button>
+              </form>
+              <div class="admin-list" id="serviceAdminList"></div>
+            </section>
+
+            <section class="admin-calc-block">
+              <h3>Срочность</h3>
+              <form id="urgencyAddForm" class="admin-inline-form admin-inline-form--calc">
+                <input id="addUrgencyLabel" type="text" placeholder="Название (например, Срочно)" required>
+                <input id="addUrgencyMultiplier" type="number" min="0.5" max="3" step="0.01" placeholder="Коэффициент" required>
+                <button class="btn btn--dark" type="submit">Добавить режим</button>
+              </form>
+              <div class="admin-list" id="urgencyAdminList"></div>
+            </section>
+          </div>
+        </article>
+
+        <article class="admin-card admin-card--tools" data-tab-panel="system" hidden>
+          <h2>Система</h2>
+
+          <section class="admin-seo-section">
+            <h3 class="admin-section-h3">SEO — заголовки и описания</h3>
+            <div class="admin-fields">
+              <label class="admin-field">
+                <span>Заголовок сайта (общий)</span>
+                <input id="seoTitle" type="text" placeholder="X Mobile — ремонт Apple в Саратове">
+              </label>
+              <label class="admin-field">
+                <span>Описание сайта (общее)</span>
+                <input id="seoDescription" type="text" placeholder="Ремонт iPhone, iPad, MacBook в Саратове">
+              </label>
+              <label class="admin-field">
+                <span>Заголовок — страница Ремонт</span>
+                <input id="seoTitleRepair" type="text" placeholder="X Mobile — ремонт Apple">
+              </label>
+              <label class="admin-field">
+                <span>Описание — страница Ремонт</span>
+                <input id="seoDescriptionRepair" type="text" placeholder="Описание для страницы ремонта">
+              </label>
+              <label class="admin-field">
+                <span>Заголовок — страница Магазин</span>
+                <input id="seoTitleShop" type="text" placeholder="X Mobile — магазин запчастей">
+              </label>
+              <label class="admin-field">
+                <span>Описание — страница Магазин</span>
+                <input id="seoDescriptionShop" type="text" placeholder="Описание для страницы магазина">
+              </label>
+            </div>
+            <div class="admin-seo-toggle-row">
+              <label class="toggle-switch">
+                <input type="checkbox" id="seoIndexShop" checked>
+                <span class="toggle-switch__track"></span>
+              </label>
+              <span class="admin-seo-toggle-label">Разрешить индексирование страницы магазина</span>
+            </div>
+          </section>
+
+          <section class="admin-seo-section">
+            <h3 class="admin-section-h3">Иконка сайта (Favicon)</h3>
+            <div class="admin-favicon-row">
+              <img id="seoFaviconPreview" class="admin-favicon-preview" src="" alt="Favicon" hidden>
+              <div class="admin-tools">
+                <label class="btn btn--light admin-upload-btn">
+                  Загрузить иконку
+                  <input id="seoFaviconInput" type="file" accept="image/png,image/x-icon,image/svg+xml,image/webp" hidden>
+                </label>
+                <button class="btn btn--light" id="seoFaviconClear" type="button">Сбросить</button>
+              </div>
+            </div>
+          </section>
+
+          <section class="admin-seo-section">
+            <h3 class="admin-section-h3">Верификация и аналитика</h3>
+            <div class="admin-fields">
+              <label class="admin-field">
+                <span>Яндекс.Вебмастер — код верификации</span>
+                <input id="seoYandexVerification" type="text" placeholder="Значение атрибута content=&quot;...&quot;">
+              </label>
+              <label class="admin-field">
+                <span>Google Search Console — код верификации</span>
+                <input id="seoGoogleVerification" type="text" placeholder="Значение атрибута content=&quot;...&quot;">
+              </label>
+              <label class="admin-field admin-field--full">
+                <span>Яндекс.Метрика — код счётчика</span>
+                <textarea id="seoYandexMetrika" placeholder="Вставьте скрипт Яндекс.Метрики целиком"></textarea>
+              </label>
+              <label class="admin-field admin-field--full">
+                <span>Google Analytics — код отслеживания</span>
+                <textarea id="seoGoogleAnalytics" placeholder="Вставьте скрипт Google Analytics (GA4) целиком"></textarea>
+              </label>
+            </div>
+          </section>
+
+          <button class="btn btn--orange" id="saveSeoButton" type="button">Сохранить SEO-настройки</button>
+
+          <section class="admin-seo-section">
+            <h3 class="admin-section-h3">Telegram бот</h3>
+            <div class="admin-fields">
+              <label class="admin-field admin-field--full">
+                Токен бота
+                <div class="field-pw-wrap">
+                  <input id="botToken" type="password" placeholder="1234567890:AAE_xxxxxx" autocomplete="off">
+                  <button type="button" class="field-eye-btn" data-target="botToken" aria-label="Показать токен">
+                    <svg class="eye-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                    <svg class="eye-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/><path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+                  </button>
+                </div>
+              </label>
+              <label class="admin-field">
+                Username бота (без @)
+                <input id="botUsername" type="text" placeholder="MyBot">
+              </label>
+              <label class="admin-field">
+                Webhook secret
+                <input id="botWebhookSecret" type="text" placeholder="Оставьте пустым для генерации">
+              </label>
+              <label class="admin-field">
+                Admin Chat IDs (через запятую)
+                <input id="botAdminChatIds" type="text" placeholder="1234567890, 9876543210">
+              </label>
+              <label class="admin-field">
+                Manager Chat IDs (через запятую)
+                <input id="botManagerChatIds" type="text" placeholder="1234567890">
+              </label>
+            </div>
+            <p class="admin-note" id="botConfigNote">Chat ID — числовой идентификатор Telegram-аккаунта, который будет получать уведомления о заказах и заявках. Получить его можно через @userinfobot.</p>
+          </section>
+
+          <div class="admin-save-row">
+            <button class="btn btn--dark" id="saveBotConfigButton" type="button">Сохранить настройки бота</button>
+            <span class="admin-inline-msg" id="botConfigSaveMsg"></span>
+          </div>
+
+          <section class="admin-seo-section">
+            <h3 class="admin-section-h3">Импорт каталога из YML</h3>
+            <div class="admin-fields">
+              <label class="admin-field admin-field--full">
+                URL YML-файла
+                <input id="ymlImportUrl" type="url" placeholder="https://example.com/price.yml">
+              </label>
+              <label class="admin-field admin-field--full">
+                Или загрузить файл
+                <input id="ymlImportFile" type="file" accept=".yml,.xml,.yaml">
+              </label>
+              <label class="admin-field">
+                Режим импорта
+                <select id="ymlImportMode">
+                  <option value="merge">Добавить / обновить (сохранить существующие)</option>
+                  <option value="replace_products">Заменить только товары и категории</option>
+                  <option value="replace_all">Заменить всё (полный сброс каталога)</option>
+                </select>
+              </label>
+            </div>
+            <div class="admin-save-row" style="margin-top:10px">
+              <button class="btn btn--orange" id="ymlImportButton" type="button">Импортировать каталог</button>
+              <span class="admin-inline-msg" id="ymlImportMsg"></span>
+            </div>
+            <div id="ymlImportPreview" class="admin-yml-preview" hidden></div>
+          </section>
+
+          <section class="admin-seo-section">
+            <h3 class="admin-section-h3">Резервные операции</h3>
+            <div class="admin-tools">
+              <button class="btn btn--light" id="resetDataButton" type="button">Сбросить базу к умолчанию</button>
+              <button class="btn btn--dark" id="exportDataButton" type="button">Экспорт JSON</button>
+              <label class="btn btn--light admin-upload-btn">
+                Импорт JSON
+                <input id="importDataInput" type="file" accept="application/json,.json" hidden>
+              </label>
+            </div>
+          </section>
+        </article>
+
+        <article class="admin-card" data-tab-panel="users" hidden>
+          <h2>База пользователей</h2>
+          <p>Список зарегистрированных пользователей, Telegram-статус, аналитика покупок и заявок.</p>
+          <div class="request-filters request-filters--users">
+            <label>
+              Поиск
+              <input id="adminUsersSearch" type="text" placeholder="ID, email, телефон, Telegram">
+            </label>
+            <label>
+              Telegram
+              <select id="adminUsersTelegramFilter">
+                <option value="">Все</option>
+                <option value="linked">Только привязанные</option>
+                <option value="none">Только без привязки</option>
+              </select>
+            </label>
+            <button class="mini-btn" id="adminUsersRefresh" type="button">Обновить</button>
+          </div>
+          <div class="admin-list admin-list--users" id="adminUsersList"></div>
+        </article>
+
+        <article class="admin-card" data-tab-panel="orders" hidden>
+          <h2>Заказы</h2>
+          <p>Управление статусами заказов с синхронизацией уведомлений.</p>
+          <div class="request-filters">
+            <label>
+              Поиск
+              <input id="adminOrdersSearch" type="text" placeholder="ID, клиент, телефон, товар">
+            </label>
+            <label>
+              Статус
+              <select id="adminOrdersStatusFilter">
+                <option value="">Все</option>
+                <option value="new">Новый</option>
+                <option value="in_progress">В работе</option>
+                <option value="postponed">Отложен</option>
+                <option value="ready">Готов</option>
+                <option value="done">Завершен</option>
+                <option value="rejected">Отменен</option>
+              </select>
+            </label>
+            <button class="mini-btn" id="adminOrdersRefresh" type="button">Обновить</button>
+          </div>
+          <div class="admin-list" id="adminOrdersList"></div>
+        </article>
+
+        <article class="admin-card" data-tab-panel="returns" hidden>
+          <h2>Возвраты</h2>
+          <p>Обработка заявок на возврат и статусов согласования.</p>
+          <div class="request-filters">
+            <label>
+              Поиск
+              <input id="adminReturnsSearch" type="text" placeholder="ID возврата, заказ, причина">
+            </label>
+            <label>
+              Статус
+              <select id="adminReturnsStatusFilter">
+                <option value="">Все</option>
+                <option value="new">Новая</option>
+                <option value="in_review">На рассмотрении</option>
+                <option value="approved">Одобрена</option>
+                <option value="done">Завершена</option>
+                <option value="rejected">Отклонена</option>
+              </select>
+            </label>
+            <button class="mini-btn" id="adminReturnsRefresh" type="button">Обновить</button>
+          </div>
+          <div class="admin-list" id="adminReturnsList"></div>
+        </article>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="./script.js"></script>
+  <script src="./admin.js"></script>
+  <script src="./admin-extended.js"></script>
+</body>
+</html>

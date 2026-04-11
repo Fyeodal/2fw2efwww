@@ -1,0 +1,362 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>X Mobile - Личный кабинет</title>
+  <meta name="description" content="Личный кабинет X Mobile: заказы, заявки, возвраты, профиль и привязка Telegram.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar__inner">
+      <a class="logo" href="./index.html"><img class="logo__img" src="./assets/logo-xmobile.svg" alt="X Mobile"></a>
+      <nav class="nav">
+        <a href="./index.html">Главная</a>
+        <a href="./shop.html">Магазин</a>
+        <a href="./index.html#services">Услуги</a>
+        <a href="./account.html" class="is-active">Кабинет</a>
+      </nav>
+      <a class="btn btn--dark" href="./index.html#calculator">Оставить заявку</a>
+      <button class="nav-burger" id="navBurger" aria-label="Открыть меню" aria-expanded="false">
+        <span class="nav-burger__line"></span>
+        <span class="nav-burger__line"></span>
+        <span class="nav-burger__line"></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section class="section account-shell reveal">
+      <div class="section-head">
+        <h1>Личный кабинет</h1>
+      </div>
+
+      <article class="card account-auth" id="accountAuth">
+        <aside class="account-auth__side">
+          <p class="account-auth__eyebrow">X Mobile ID</p>
+          <h2>Управляйте заказами и заявками в одном кабинете</h2>
+          <p class="account-auth__side-text" data-auth-side="login">
+            Войдите в аккаунт, чтобы смотреть статусы, историю изменений и уведомления.
+          </p>
+          <p class="account-auth__side-text is-hidden" data-auth-side="register">
+            Зарегистрируйтесь, чтобы сохранить данные, получать обновления и быстрее оформлять обращения.
+          </p>
+          <ul class="account-auth__benefits">
+            <li>История заказов и заявок в одном месте</li>
+            <li>Уведомления об изменениях статуса</li>
+            <li>Привязка Telegram и быстрый контакт</li>
+          </ul>
+          <a class="mini-btn account-auth__link" href="./index.html#calculator">Подать заявку без входа</a>
+        </aside>
+
+        <div class="account-auth__main">
+          <div class="account-auth__tabs">
+            <button class="mini-btn mini-btn--dark is-active" type="button" data-auth-tab="login">Вход</button>
+            <button class="mini-btn" type="button" data-auth-tab="register">Регистрация</button>
+          </div>
+
+          <p class="account-auth__hint" data-auth-side="login">Введите email или телефон и пароль.</p>
+          <p class="account-auth__hint is-hidden" data-auth-side="register">Заполните поля, чтобы создать аккаунт.</p>
+
+          <form id="loginForm" class="account-auth__form">
+            <div class="field">
+              <label for="loginValue">Email или телефон</label>
+              <input id="loginValue" type="text" placeholder="you@email.com или +7..." required>
+            </div>
+            <div class="field field--password">
+              <label for="loginPassword">Пароль</label>
+              <div class="field-pw-wrap">
+                <input id="loginPassword" type="password" placeholder="Введите пароль" required>
+                <button type="button" class="field-eye-btn" data-target="loginPassword" aria-label="Показать пароль">
+                  <svg class="eye-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                  <svg class="eye-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/><path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+                </button>
+              </div>
+            </div>
+            <button class="btn btn--orange account-auth__submit" type="submit">Войти</button>
+          </form>
+
+          <form id="registerForm" class="account-auth__form is-hidden">
+            <div class="field">
+              <label for="registerName">ФИО</label>
+              <input id="registerName" type="text" placeholder="Иванов Иван Иванович" required>
+            </div>
+            <div class="field">
+              <label for="registerEmail">Email</label>
+              <input id="registerEmail" type="email" placeholder="you@email.com" required>
+            </div>
+            <div class="field">
+              <label for="registerPhone">Телефон</label>
+              <input id="registerPhone" type="tel" placeholder="+7 (___) ___-__-__" required>
+            </div>
+            <div class="field field--password">
+              <label for="registerPassword">Пароль</label>
+              <div class="field-pw-wrap">
+                <input id="registerPassword" type="password" placeholder="Минимум 8 символов (буквы + цифры)" required>
+                <button type="button" class="field-eye-btn" data-target="registerPassword" aria-label="Показать пароль">
+                  <svg class="eye-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                  <svg class="eye-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/><path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+                </button>
+              </div>
+            </div>
+            <label class="agree-label" id="registerAgreeLabel">
+              <input type="checkbox" id="registerAgree">
+              <span class="agree-box"></span>
+              <span class="agree-text">Соглашаюсь с <a href="/privacy.html" target="_blank">Политикой конфиденциальности</a></span>
+            </label>
+            <button class="btn btn--orange account-auth__submit" type="submit">Создать аккаунт</button>
+          </form>
+
+          <p class="form-note" id="authNote">Авторизуйтесь, чтобы видеть историю заказов и заявок.</p>
+        </div>
+      </article>
+
+      <div class="account-layout is-hidden" id="accountLayout">
+        <aside class="account-sidebar">
+          <button class="account-tab is-active" type="button" data-account-panel="orders">Мои заказы</button>
+          <button class="account-tab" type="button" data-account-panel="requests">Мои заявки</button>
+          <button class="account-tab" type="button" data-account-panel="returns">Возвраты</button>
+          <button class="account-tab" type="button" data-account-panel="profile">Профиль / настройки</button>
+          <button class="btn btn--light account-logout" id="logoutButton" type="button">Выйти</button>
+        </aside>
+
+        <div class="account-content">
+          <section class="account-overview" id="accountOverview">
+            <button class="account-kpi" type="button" data-account-jump="orders">
+              <span class="account-kpi__label">Заказы</span>
+              <strong class="account-kpi__value" id="overviewOrdersCount">0</strong>
+              <span class="account-kpi__meta" id="overviewOrdersMeta">На сумму 0 ₽</span>
+            </button>
+            <button class="account-kpi" type="button" data-account-jump="requests">
+              <span class="account-kpi__label">Заявки</span>
+              <strong class="account-kpi__value" id="overviewRequestsCount">0</strong>
+              <span class="account-kpi__meta" id="overviewRequestsMeta">Активных: 0</span>
+            </button>
+            <button class="account-kpi" type="button" data-account-jump="returns">
+              <span class="account-kpi__label">Возвраты</span>
+              <strong class="account-kpi__value" id="overviewReturnsCount">0</strong>
+              <span class="account-kpi__meta" id="overviewReturnsMeta">Открытых: 0</span>
+            </button>
+            <button class="account-kpi" type="button" data-account-jump="profile">
+              <span class="account-kpi__label">Профиль / Telegram</span>
+              <strong class="account-kpi__value" id="overviewTelegramValue">Не привязан</strong>
+              <span class="account-kpi__meta" id="overviewTelegramMeta">Откройте настройки профиля</span>
+            </button>
+          </section>
+
+          <article class="card account-panel" data-account-content="orders">
+            <div class="account-panel__head">
+              <h2>Мои заказы</h2>
+              <div class="account-filters">
+                <input id="ordersSearch" type="text" placeholder="Поиск по номеру, статусу, товару">
+                <select id="ordersStatusFilter">
+                  <option value="">Все статусы</option>
+                  <option value="new">Новый</option>
+                  <option value="in_progress">В работе</option>
+                  <option value="postponed">Отложен</option>
+                  <option value="ready">Готов</option>
+                  <option value="done">Завершен</option>
+                  <option value="rejected">Отменен</option>
+                </select>
+              </div>
+            </div>
+            <div class="account-list" id="ordersList"></div>
+          </article>
+
+          <article class="card account-panel is-hidden" data-account-content="requests">
+            <div class="account-panel__head">
+              <h2>Мои заявки</h2>
+              <div class="account-filters">
+                <input id="requestsSearch" type="text" placeholder="Поиск по ID, типу, статусу">
+                <select id="requestsTypeFilter">
+                  <option value="">Все типы</option>
+                  <option value="repair">Ремонт</option>
+                  <option value="parts_purchase">Покупка деталей</option>
+                  <option value="return">Возврат</option>
+                </select>
+                <select id="requestsStatusFilter">
+                  <option value="">Все статусы</option>
+                  <option value="new">Новая</option>
+                  <option value="in_progress">В работе</option>
+                  <option value="postponed">Отложена</option>
+                  <option value="done">Обработана</option>
+                  <option value="rejected">Отклонена</option>
+                </select>
+              </div>
+            </div>
+            <div class="account-list" id="requestsList"></div>
+          </article>
+
+          <article class="card account-panel is-hidden" data-account-content="returns">
+            <div class="account-panel__head">
+              <h2>Возвраты</h2>
+              <button class="btn btn--dark" id="toggleReturnFormButton" type="button">Подать заявку на возврат</button>
+            </div>
+
+            <form class="account-return-form is-hidden" id="returnForm">
+              <div class="field">
+                <label for="returnOrderId">Заказ</label>
+                <select id="returnOrderId" required></select>
+              </div>
+              <div class="field">
+                <label for="returnReason">Причина возврата</label>
+                <select id="returnReason" required>
+                  <option value="">Выберите причину</option>
+                  <option value="Не подошёл товар">Не подошёл товар</option>
+                  <option value="Заводской дефект">Заводской дефект</option>
+                  <option value="Повреждение при получении">Повреждение при получении</option>
+                  <option value="Иная причина">Иная причина</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="returnDescription">Описание проблемы</label>
+                <textarea id="returnDescription" rows="4" placeholder="Опишите проблему подробно" required></textarea>
+              </div>
+              <div class="field">
+                <label for="returnFiles">Фото / файлы (до 3)</label>
+                <input id="returnFiles" type="file" accept="image/*,.pdf" multiple>
+              </div>
+              <button class="btn btn--orange" type="submit">Отправить заявку на возврат</button>
+              <p class="form-note" id="returnNote">После отправки заявка появится в вашем списке возвратов.</p>
+            </form>
+
+            <div class="account-list" id="returnsList"></div>
+          </article>
+
+          <article class="card account-panel is-hidden" data-account-content="profile">
+            <div class="account-panel__head">
+              <h2>Профиль и настройки</h2>
+            </div>
+
+            <form id="profileForm" class="account-profile-form">
+              <div class="field">
+                <label for="profileFullName">ФИО</label>
+                <input id="profileFullName" type="text" required>
+              </div>
+              <div class="field">
+                <label for="profileEmail">Email</label>
+                <input id="profileEmail" type="email" required>
+              </div>
+              <div class="field">
+                <label for="profilePhone">Телефон</label>
+                <input id="profilePhone" type="tel" required>
+              </div>
+              <div class="field">
+                <label for="profileCity">Город</label>
+                <input id="profileCity" type="text" placeholder="Саратов">
+              </div>
+              <div class="field">
+                <label for="profileTelegramUsername">Telegram username</label>
+                <input id="profileTelegramUsername" type="text" placeholder="@username">
+              </div>
+              <button class="btn btn--dark" type="submit">Сохранить профиль</button>
+            </form>
+
+            <div class="telegram-bind card">
+              <h3>Привязка Telegram</h3>
+              <p id="telegramStatusText">Статус: не привязан</p>
+              <div class="telegram-bind__actions">
+                <button class="mini-btn mini-btn--dark" id="generateTelegramLinkButton" type="button">Сгенерировать код привязки</button>
+                <button class="mini-btn" id="unlinkTelegramButton" type="button">Отвязать Telegram</button>
+              </div>
+              <div id="telegramLinkBox" class="telegram-link-box is-hidden">
+                <p><strong>Код:</strong> <span id="telegramBindCode"></span></p>
+                <p><strong>Ссылка:</strong> <a id="telegramBindLink" href="#" target="_blank" rel="noreferrer">Открыть бота</a></p>
+                <p class="form-note">Код действует 10 минут. Telegram username не считается подтверждением личности без привязки через код.</p>
+              </div>
+            </div>
+
+            <form id="passwordForm" class="account-password-form">
+              <h3>Сменить пароль</h3>
+              <div class="field">
+                <label for="currentPassword">Текущий пароль</label>
+                <div class="field-pw-wrap">
+                  <input id="currentPassword" type="password" placeholder="Оставьте пустым для авто-созданного аккаунта">
+                  <button type="button" class="field-eye-btn" data-target="currentPassword" aria-label="Показать пароль">
+                    <svg class="eye-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                    <svg class="eye-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/><path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+                  </button>
+                </div>
+              </div>
+              <div class="field">
+                <label for="newPassword">Новый пароль</label>
+                <div class="field-pw-wrap">
+                  <input id="newPassword" type="password" placeholder="Минимум 8 символов (буквы + цифры)" required>
+                  <button type="button" class="field-eye-btn" data-target="newPassword" aria-label="Показать пароль">
+                    <svg class="eye-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                    <svg class="eye-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/><path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+                  </button>
+                </div>
+              </div>
+              <button class="btn btn--orange" type="submit">Обновить пароль</button>
+              <p class="form-note" id="profileNote">Изменения применяются сразу после сохранения.</p>
+            </form>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer-site">
+    <div class="footer-site__inner">
+      <div class="footer-col footer-col--brand">
+        <a class="footer-logo" href="./index.html">
+          <img src="./assets/logo-xmobile.svg" alt="X Mobile">
+        </a>
+        <p>Ремонт телефонов и продажа запчастей для Apple</p>
+        <p>ИНН 6452912974785<br>ОГРНИП 32164510003354</p>
+        <p>Российская Федерация, г. Саратов, ул. Большая Казачья, 35</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Контакты</h4>
+        <a href="tel:+79272264321">+7 (927) 226-4321</a>
+        <a href="https://t.me/xm64ru" target="_blank" rel="noreferrer">Telegram: @xm64ru</a>
+        <a href="mailto:info@xm64.ru">Email: info@xm64.ru</a>
+      </div>
+
+      <div class="footer-col">
+        <h4>Разделы сайта</h4>
+        <a href="./index.html">Главная</a>
+        <a href="./shop.html">Магазин</a>
+        <a href="./account.html">Личный кабинет</a>
+        <a href="./index.html#services">Услуги</a>
+        <a href="./index.html#contacts">Контакты</a>
+      </div>
+
+      <div class="footer-col">
+        <h4>Информация</h4>
+        <a href="./about.html">О нас</a>
+        <a href="./return.html">Возврат товара</a>
+        <a href="./privacy.html">Политика конфиденциальности</a>
+        <a href="./admin-login.html">Вход для администратора</a>
+      </div>
+    </div>
+
+    <div class="footer-site__bottom">
+      <p>© 2026 Икс Мобайл - Ремонт и Запчасти для Apple в Саратове</p>
+      <div class="footer-partners">
+        <span>Поисковые партнёры</span>
+        <strong>POISKZIP</strong>
+        <strong>POISK123.RU</strong>
+      </div>
+    </div>
+  </footer>
+
+  <div class="account-modal is-hidden" id="entityModal">
+    <div class="account-modal__backdrop" data-modal-close></div>
+    <article class="account-modal__card">
+      <button class="account-modal__close" type="button" data-modal-close>×</button>
+      <h3 id="entityModalTitle">Карточка</h3>
+      <div id="entityModalBody"></div>
+    </article>
+  </div>
+
+  <script src="./script.js"></script>
+  <script src="./account.js"></script>
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>X Mobile - О нас</title>
+  <meta name="description" content="О компании X Mobile: ремонт техники Apple и магазин запчастей в Саратове и Энгельсе.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar__inner">
+      <a class="logo" href="./index.html"><img class="logo__img" src="./assets/logo-xmobile.svg" alt="X Mobile"></a>
+      <nav class="nav">
+        <a href="./index.html">Главная</a>
+        <a href="./shop.html">Магазин</a>
+        <a href="./account.html">Кабинет</a>
+        <a href="./about.html" class="is-active">О нас</a>
+        <a href="./return.html">Возврат</a>
+        <a href="./privacy.html">Политика</a>
+      </nav>
+      <div class="topbar__actions">
+        <a class="btn btn--request" href="./index.html#calculator">Оставить заявку</a>
+        <a class="btn btn--cabinet" href="./account.html">Личный кабинет</a>
+      </div>
+      <button class="nav-burger" id="navBurger" aria-label="Открыть меню" aria-expanded="false">
+        <span class="nav-burger__line"></span>
+        <span class="nav-burger__line"></span>
+        <span class="nav-burger__line"></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section class="section page-hero reveal">
+      <h1>О компании X Mobile</h1>
+      <p>
+        X Mobile - ремонт телефонов и продажа запчастей для Apple в Саратове и Энгельсе.
+        Основные направления: сервисный ремонт, диагностика и магазин комплектующих.
+      </p>
+    </section>
+
+    <section class="section reveal">
+      <div class="info-layout">
+        <article class="info-card">
+          <h2>Чем занимаемся</h2>
+          <ul>
+            <li>Ремонт техники Apple: iPhone, iPad, MacBook, Apple Watch, AirPods.</li>
+            <li>Разблокировка, программный ремонт, замена аккумулятора, шлейфов, разъёмов, восстановление после жидкости.</li>
+            <li>Сложный ремонт материнских плат и компонентный сервис.</li>
+            <li>Магазин запчастей и аксессуаров с категориями iPhone, JCID, кабели и зарядка.</li>
+          </ul>
+        </article>
+
+        <article class="info-card">
+          <h2>Филиалы</h2>
+          <h3>Саратов, ул. Б. Казачья, 35</h3>
+          <p>+7 (927) 226-43-21 · ежедневно 10:00-19:00</p>
+          <h3>Саратов, ул. Московская, 100</h3>
+          <p>+7 (927) 227-43-21 · ежедневно 10:00-19:00</p>
+          <h3>Энгельс, ул. Тельмана, 6</h3>
+          <p>+7 (927) 223-43-21 · пн-пт 11:00-18:30</p>
+        </article>
+
+        <article class="info-card">
+          <h2>Реквизиты</h2>
+          <p>ИНН: 6452912974785</p>
+          <p>ОГРНИП: 32164510003354</p>
+          <p>Контакты: +7 (927) 226-4321 · Telegram: @xm64ru · Email: info@xm64.ru</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer-site">
+    <div class="footer-site__inner">
+      <div class="footer-col footer-col--brand">
+        <a class="footer-logo" href="./index.html"><img src="./assets/logo-xmobile.svg" alt="X Mobile"></a>
+        <p>Ремонт телефонов и продажа запчастей для Apple</p>
+        <p>ИНН 6452912974785<br>ОГРНИП 32164510003354</p>
+        <p>Российская Федерация, г. Саратов, ул. Большая Казачья, 35</p>
+      </div>
+      <div class="footer-col">
+        <h4>Контакты</h4>
+        <a href="tel:+79272264321">+7 (927) 226-4321</a>
+        <a href="https://t.me/xm64ru" target="_blank" rel="noreferrer">Telegram: @xm64ru</a>
+        <a href="mailto:info@xm64.ru">Email: info@xm64.ru</a>
+      </div>
+      <div class="footer-col">
+        <h4>Разделы сайта</h4>
+        <a href="./index.html">Главная</a>
+        <a href="./shop.html">Магазин</a>
+        <a href="./account.html">Личный кабинет</a>
+        <a href="./index.html#services">Услуги</a>
+        <a href="./index.html#contacts">Контакты</a>
+      </div>
+      <div class="footer-col">
+        <h4>Информация</h4>
+        <a href="./about.html">О нас</a>
+        <a href="./return.html">Возврат товара</a>
+        <a href="./privacy.html">Политика конфиденциальности</a>
+      </div>
+    </div>
+    <div class="footer-site__bottom">
+      <p>© 2026 Икс Мобайл - Ремонт и Запчасти для Apple в Саратове</p>
+      <div class="footer-partners">
+        <span>Поисковые партнёры</span>
+        <strong>POISKZIP</strong>
+        <strong>POISK123.RU</strong>
+      </div>
+    </div>
+  </footer>
+
+  <script src="./script.js"></script>
+</body>
+</html>
