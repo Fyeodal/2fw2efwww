@@ -1,0 +1,18 @@
+{
+  "meta": {
+    "version": 2,
+    "createdAt": "2026-04-11T00:00:00.000Z",
+    "updatedAt": "2026-04-11T00:00:00.000Z"
+  },
+  "counters": {
+    "user": 0,
+    "request": 0,
+    "order": 0,
+    "return": 0,
+    "notification": 0
+  },
+  "users": [],
+  "requests": [],
+  "orders": [],
+  "returns": []
+}

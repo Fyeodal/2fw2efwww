@@ -1,0 +1,143 @@
+{
+  "lastId": 3,
+  "applications": [
+    {
+      "id": "APP-000003",
+      "source": "repair_form",
+      "client": {
+        "fullName": "23К234УВЫ 2К",
+        "phone": "1123211",
+        "email": "mahno.s4268@gmail.com",
+        "branch": "Саратов, Б. Казачья, 35",
+        "comment": "32к23"
+      },
+      "details": {
+        "calculator": {
+          "device": "iPhone",
+          "model": "Базовая модель",
+          "service": "Замена аккумулятора",
+          "urgency": "Стандарт"
+        },
+        "priceRange": "",
+        "telegram": "",
+        "order": {
+          "totalQty": 0,
+          "totalPrice": 0,
+          "items": []
+        }
+      },
+      "status": "new",
+      "statusLabel": "Новая",
+      "createdAt": "2026-04-06T11:20:48.157Z",
+      "updatedAt": "2026-04-06T11:20:48.157Z",
+      "history": [
+        {
+          "status": "new",
+          "label": "Новая",
+          "at": "2026-04-06T11:20:48.157Z",
+          "by": "client",
+          "note": "Заявка создана через сайт"
+        }
+      ]
+    },
+    {
+      "id": "APP-000002",
+      "source": "repair_form",
+      "client": {
+        "fullName": "23к23йка23",
+        "phone": "232323",
+        "email": "mahno.s4268@gmail.com",
+        "branch": "Саратов, Московская, 100",
+        "comment": "23ка2ац2"
+      },
+      "details": {
+        "calculator": {
+          "device": "iPhone",
+          "model": "Базовая модель",
+          "service": "Замена аккумулятора",
+          "urgency": "Стандарт"
+        },
+        "priceRange": "",
+        "telegram": "",
+        "order": {
+          "totalQty": 0,
+          "totalPrice": 0,
+          "items": []
+        }
+      },
+      "status": "rejected",
+      "statusLabel": "Отклонена",
+      "createdAt": "2026-04-06T10:48:41.723Z",
+      "updatedAt": "2026-04-06T10:49:00.013Z",
+      "history": [
+        {
+          "status": "new",
+          "label": "Новая",
+          "at": "2026-04-06T10:48:41.723Z",
+          "by": "client",
+          "note": "Заявка создана через сайт"
+        },
+        {
+          "status": "rejected",
+          "label": "Отклонена",
+          "at": "2026-04-06T10:49:00.013Z",
+          "by": "admin",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "id": "APP-000001",
+      "source": "repair_form",
+      "client": {
+        "fullName": "2К 23К234УВЫ",
+        "phone": "23432233223",
+        "email": "mahno.s4268@gmail.com",
+        "branch": "Саратов, Б. Казачья, 35",
+        "comment": "23R24RF243EW"
+      },
+      "details": {
+        "calculator": {
+          "device": "iPhone",
+          "model": "Базовая модель",
+          "service": "Замена аккумулятора",
+          "urgency": "Стандарт"
+        },
+        "priceRange": "",
+        "telegram": "",
+        "order": {
+          "totalQty": 0,
+          "totalPrice": 0,
+          "items": []
+        }
+      },
+      "status": "done",
+      "statusLabel": "Обработана",
+      "createdAt": "2026-04-06T10:44:13.559Z",
+      "updatedAt": "2026-04-06T10:48:17.948Z",
+      "history": [
+        {
+          "status": "new",
+          "label": "Новая",
+          "at": "2026-04-06T10:44:13.559Z",
+          "by": "client",
+          "note": "Заявка создана через сайт"
+        },
+        {
+          "status": "postponed",
+          "label": "Отложена",
+          "at": "2026-04-06T10:48:10.439Z",
+          "by": "admin",
+          "note": "уавуа"
+        },
+        {
+          "status": "done",
+          "label": "Обработана",
+          "at": "2026-04-06T10:48:17.948Z",
+          "by": "admin",
+          "note": ""
+        }
+      ]
+    }
+  ]
+}
